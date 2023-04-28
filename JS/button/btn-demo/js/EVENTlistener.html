@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Events</title>
+    <style>
+        .container {
+            width: 80%;
+            height: 50vh;
+            margin: 5rem auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid grey;
+        }
+
+        .btn {
+            margin: .5rem;
+            padding: 1rem;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: rgb(69, 154, 250);
+
+        }
+
+        .btn:hover {
+            background-color: rgb(54, 95, 183);
+            color: rgb(209, 244, 182);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn" onclick="startApp()">START APP</button>
+        <button class="btn" id="btn">START APP</button>
+    </div>
+
+    <script src="/button/btn-demo/js/appScript.js"></script>
+</body>
+
+</html>
