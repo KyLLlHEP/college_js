@@ -11,11 +11,16 @@
   <body>
     <div id="topsection">
       <p>WELCOME TO THE QUIZ <span id="name"> ...name here... </span></p>
-      <button id="btn">START QUIZ</button>
+      <button id="btn-start">START QUIZ</button>
+    </div>
+    <!-- create div for question section -->
+    <div id="quiz-section" style="display: none">
+      <h1>Quiz Section</h1>
+      <div id="question"></div>
     </div>
 
     <!-- // Always use type = "module" if you import file js// -->
-    <script type="module" src="js/quiz_assess_script.js"></script>
     <script type="module" src="js/questions.js"></script>
+    <script type="module" src="js/quiz_assess_script.js"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 // Array with 5 simple questions
-
-const questions = [
+//  Export so that we can use this array in another file
+export const questions = [
   {
     question: "What is the capital of UK?",
     answer: "London",
@@ -25,7 +25,7 @@ const questions = [
 
 //   Create a function which generates questions from arrow
 
-const getQuestion = () => {
-  const randomIndex = Math.floor(Math.random() * questions.length);
-  return questions[randomIndex];
-};
+// const getQuestion = () => {
+//   const randomIndex = Math.floor(Math.random() * questions.length);
+//   return questions[randomIndex];
+// };
