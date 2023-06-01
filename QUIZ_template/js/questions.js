@@ -29,10 +29,3 @@ const getQuestion = () => {
   const randomIndex = Math.floor(Math.random() * questions.length);
   return questions[randomIndex];
 };
-
-// Export thit function in main fail js
-// thereby reducing the code in the main file and improving the development
-
-// test function
-// const question = getQuestion();
-// console.log(question);
