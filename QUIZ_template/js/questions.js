@@ -3,29 +3,22 @@
 export const questions = [
   {
     question: "What is the capital of UK?",
-    answer: "London",
+    answers: ["London"],
   },
   {
     question: "Which language is considered international ?",
-    answer: "English",
+    answers: ["English"],
   },
   {
     question: "A companion of the earth ?",
-    answer: "Moon",
+    answers: ["Moon"],
   },
   {
     question: "The largest animal on the planet ?",
-    answer: "Whale",
+    answers: ["Whale"],
   },
   {
     question: "What is the most popular flavor of ice cream in the world ?",
-    answer: "vanilla",
+    answers: ["vanilla"],
   },
 ];
-
-//   Create a function which generates questions from arrow
-
-// const getQuestion = () => {
-//   const randomIndex = Math.floor(Math.random() * questions.length);
-//   return questions[randomIndex];
-// };
