@@ -55,18 +55,26 @@ const startQuiz = () => {
     }
   });
 
-  // showQuestion(currentQuestionIndex); //Displaying the first question
   // Clear the input field
   document.getElementById("answer-input").value = "";
 };
 
-//
+// Show question
 const showQuestion = (questionIndex) => {
   const questionElement = document.getElementById("question");
   const question = questions[questionIndex].question; //
   questionElement.textContent = question; //
   //Reset attempts count for the current question
-  currentQuestionAttempts = 0;
+  // currentQuestionAttempts = 0;
+
+  //Add check for last question
+  if (questionIndex === questions.length - 1) {
+    document.getElementById("submit-btn").style.display = "none"; //Finish quize hide submit button
+    document.getElementById("finish-btn").style.display = "block";
+  } else {
+    document.getElementById("submit-btn").style.display = "block"; //Finish quize hide submit button
+    document.getElementById("finish-btn").style.display = "none";
+  }
 };
 
 // Function for displaying a question
@@ -111,4 +119,25 @@ const checkAnswer = (userAnswer) => {
 
   //Clearing the input field
   document.getElementById("answer-input").value = "";
+};
+
+// Show result score
+const endQuiz = (score) => {
+  // Hide the quiz section
+  document.getElementById("quiz-section").style.display = "none";
+
+  // Clear the previous result element
+  const resultElement = document.getElementById("result");
+  resultElement.innerHTML = "";
+
+  // Calculate the score
+  const totalQuestions = questions.length;
+  const scoreMessage = `Your score: ${score}/${totalQuestions}`; // Message result
+
+  // Create a new <p> element for the result
+  const scoreElement = document.createElement("p");
+  scoreElement.textContent = scoreMessage;
+
+  // Append the score element to the result section
+  resultElement.appendChild(scoreElement);
 };
