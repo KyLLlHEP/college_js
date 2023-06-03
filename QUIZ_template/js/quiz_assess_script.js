@@ -100,6 +100,7 @@ const checkAnswer = (userAnswer) => {
     } else {
       endQuiz(totalScore);
     }
+    alert("Your answer is correct!"); // Display massege
   } else {
     currentQuestionAttempts++; //Increase the number of attempts for the current question
 
@@ -111,6 +112,7 @@ const checkAnswer = (userAnswer) => {
       } else {
         endQuiz(totalScore);
       }
+      alert("Incorrect! You have exceeded the maximum attempts.");
     } else {
       // Message incorrect answer
       alert("Incorrect answer. Please try again.");
