@@ -1,5 +1,6 @@
 // import
 import { questions } from "./questions.js";
+import { validateInput } from "./validation.js";
 
 // Call and show players name
 document.addEventListener("DOMContentLoaded", () => {
@@ -78,11 +79,22 @@ const showQuestion = (questionIndex) => {
 };
 
 // Function for displaying a question
+
+const minRange = 1; //numbers of a given range
+const maxRange = 10;
+
 const checkAnswer = (userAnswer) => {
   const question = questions[currentQuestionIndex];
   const formattedUserAnswer = userAnswer.trim().toLowerCase(); // Lowercase the user's answer and remove the leading and trailing spaces
 
-  // Проверяем, правильный ли ответ у пользователя
+  if (formattedUserAnswer === "") {
+    // Check emty placeholder
+    showFeedback("Please enter your answer.");
+    return;
+  }
+  const userNumber = parseFloat(formattedUserAnswer);
+
+  //Checking if the user's answer is correct
   const isCorrect = question.answers.some((answer) => {
     if (typeof answer === "number") {
       return parseFloat(formattedUserAnswer) === answer; //Compare the user's numerical answer with the correct answer
