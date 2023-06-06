@@ -1,0 +1,30 @@
+#topsection {
+  width: 500px;
+  margin: 10rem auto;
+  padding: 1rem;
+  font-family: "Gill Sans MT";
+  font-size: 2rem;
+  text-align: center;
+  color: #fff;
+  background-color: rgb(42, 161, 240);
+}
+
+#btnGen,
+#btnSet {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 2rem 0;
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  background-color: rgb(178, 81, 202);
+}
+#btnSet {
+  background-color: rgb(75, 83, 192);
+}
+
+#setavatar img {
+  width: 100px;
+  height: 100px;
+}
