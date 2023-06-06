@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // get DOM element
 document.getElementById("btn-start").addEventListener("click", () => {
   // Add style 'display none' hide  start section
+
   document.getElementById("topsection").style.display = "none";
   // display question section
   document.getElementById("quiz-section").style.display = "block";
@@ -87,13 +88,22 @@ const checkAnswer = (userAnswer) => {
   const question = questions[currentQuestionIndex];
   const formattedUserAnswer = userAnswer.trim().toLowerCase(); // Lowercase the user's answer and remove the leading and trailing spaces
 
-  if (formattedUserAnswer === "") {
-    // Check emty placeholder
-    showFeedback("Please enter your answer.");
+  const userNumber = parseFloat(formattedUserAnswer);
+  const validationMessage = validateInput(
+    formattedUserAnswer,
+    minRange,
+    maxRange
+  );
+  if (validationMessage) {
+    alert(validationMessage);
     return;
   }
-  const userNumber = parseFloat(formattedUserAnswer);
 
+  if (formattedUserAnswer === "") {
+    // Check emty placeholder
+    alert("Please enter your answer.");
+    return;
+  }
   //Checking if the user's answer is correct
   const isCorrect = question.answers.some((answer) => {
     if (typeof answer === "number") {
@@ -135,6 +145,9 @@ const checkAnswer = (userAnswer) => {
   document.getElementById("answer-input").value = "";
 };
 
+// empty array players result
+const playerResults = [];
+const playerList = [];
 // Show result score
 const endQuiz = (score) => {
   // Hide the quiz section
@@ -152,6 +165,39 @@ const endQuiz = (score) => {
   const scoreElement = document.createElement("p");
   scoreElement.textContent = scoreMessage;
 
-  // Append the score element to the result section
+  const playerName = document.getElementById("name").textContent; // Get player's name
+  const currentPlayerResult = {
+    name: playerName,
+    score: score, // If you need to add more information about players
+  };
+
+  // Show the Result button
   resultElement.appendChild(scoreElement);
+  const showPlayerListBtn = document.getElementById("show-player-list-btn");
+  showPlayerListBtn.style.display = "block";
+
+  playerResults.push(currentPlayerResult);
+  playerList = playerList.concat(playerResults);
 };
+
+// Show player list button click event
+document
+  .getElementById("show-player-list-btn")
+  .addEventListener("click", () => {
+    const playerListContainer = document.getElementById(
+      "player-list-container"
+    );
+    // Show the player list container
+    playerListContainer.style.display = "block";
+
+    // Clear previous player list
+    const playerListElement = document.getElementById("player-list");
+    playerList.innerHTML = "";
+
+    // Populate player list
+    playerResults.forEach((player) => {
+      const playerElement = document.createElement("p");
+      playerElement.textContent = `Name: ${player.name}, Score: ${player.score}`;
+      playerListElement.appendChild(playerElement);
+    });
+  });

@@ -14,8 +14,8 @@ export const questions = [
     answers: ["Moon"],
   },
   {
-    question: "The largest animal on the planet ?",
-    answers: ["Whale"],
+    question: "2 + 7",
+    answers: ["9", "nine"],
   },
   {
     question: "What is the most popular flavor of ice cream in the world ?",

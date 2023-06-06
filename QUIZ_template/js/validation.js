@@ -1,19 +1,18 @@
 const validateInput = (inputValue, minRange, maxRange) => {
-  const trimmedValue = inputValue.trim(); // Delet spase
+  const trimmedValue = inputValue.trim();
 
   if (trimmedValue === "") {
-    return "Field cannot be empty"; // Chech empty value
+    return "Field cannot be empty";
   }
 
-  const numberValue = parseFloat(trimmedValue); //Converting a value into a number
+  if (!isNaN(trimmedValue)) {
+    const numberValue = parseFloat(trimmedValue);
+    if (numberValue < minRange || numberValue > maxRange) {
+      return `Number should be between ${minRange} and ${maxRange}`;
+    }
+  }
 
-  if (isNaN(numberValue)) {
-    return "Invalid input, please enter a number"; // Retern eroor massege
-  }
-  if (numberValue < minRange || numberValue > maxRange) {
-    return `Number should be between ${minRange} and ${maxRange}`; //Eroor massege about number range
-  }
-  return null; // If all check DONE
+  return null;
 };
 
 export { validateInput }; // Export function in main file
