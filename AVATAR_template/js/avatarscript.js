@@ -1,3 +1,5 @@
+let selectedAvatar = null;
+
 // Import section
 import { images } from "./images.js";
 
@@ -26,15 +28,13 @@ const genRandomAvatar = () => {
   const avatarDiv = document.getElementById("avatar");
 
   const randomImage = getRandomImage(images);
-  //Create an <img> element and set its image source
   const imgElement = document.createElement("img");
   imgElement.src = randomImage;
 
-  // Clear content of <div> with id="avatar"
   avatarDiv.innerHTML = "";
-
-  // Add <img> in <div>
   avatarDiv.appendChild(imgElement);
+
+  selectedAvatar = randomImage;
 };
 
 //Event handler for the "CREATE AVATAR" button
@@ -42,41 +42,19 @@ document.getElementById("btnGen").addEventListener("click", genRandomAvatar);
 
 // set avatar section
 
-const displayAllImages = (images) => {
-  const imagesContainer = document.getElementById("imagesContainer");
-  imagesContainer.innerHTML = "";
+const setAvatar = () => {
+  if (selectedAvatar) {
+    const setAvatarDiv = document.getElementById("setavatar");
+    const avatarDiv = document.getElementById("avatar");
 
-  images.forEach((imagePath) => {
-    const imgElement = document.createElement("img");
-    imgElement.src = imagePath;
+    setAvatarDiv.style.backgroundImage = `url(${selectedAvatar})`;
+    setAvatarDiv.style.display = "block";
+    avatarDiv.style.display = "block";
 
-    imgElement.addEventListener("click", () => {
-      const setAvatarDiv = document.getElementById("setavatar");
-      const avatarDiv = document.getElementById("avatar");
-
-      // Set the selected image as the background of setavatar
-      setAvatarDiv.style.backgroundImage = `url(${imagePath})`;
-      // Show the setavatar and hide the imagesContainer
-      setAvatarDiv.style.display = "block";
-      imagesContainer.style.display = "none";
-      // Show the generate avatar button
-      avatarDiv.style.display = "block";
-    });
-
-    imagesContainer.appendChild(imgElement);
-  });
+    document
+      .getElementById("btnGen")
+      .removeEventListener("click", genRandomAvatar);
+  }
 };
 
-document.getElementById("btnSet").addEventListener("click", () => {
-  const setAvatarDiv = document.getElementById("setavatar");
-  const avatarDiv = document.getElementById("avatar");
-  const imagesContainer = document.getElementById("imagesContainer");
-  // Show Images Container
-  imagesContainer.style.display = "block";
-  // Hide Set Avatar
-  setAvatarDiv.style.display = "none";
-  // Hide Generate Avatar
-  avatarDiv.style.display = "none";
-  // Display all images
-  displayAllImages(images);
-});
+document.getElementById("btnSet").addEventListener("click", setAvatar);
