@@ -61,7 +61,7 @@ const startQuiz = () => {
   document.getElementById("answer-input").value = "";
 };
 
-// Show question
+// Function for displaying a question
 const showQuestion = (questionIndex) => {
   const questionElement = document.getElementById("question");
   const question = questions[questionIndex].question; //
@@ -78,8 +78,6 @@ const showQuestion = (questionIndex) => {
     document.getElementById("finish-btn").style.display = "none";
   }
 };
-
-// Function for displaying a question
 
 const minRange = 1; //numbers of a given range
 const maxRange = 10;
@@ -104,6 +102,18 @@ const checkAnswer = (userAnswer) => {
     alert("Please enter your answer.");
     return;
   }
+
+  if (currentQuestionAttempts >= 3) {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion(currentQuestionIndex);
+    } else {
+      endQuiz(totalScore);
+    }
+    alert("Incorrect! You have exceeded the maximum attempts.");
+    return;
+  }
+
   //Checking if the user's answer is correct
   const isCorrect = question.answers.some((answer) => {
     if (typeof answer === "number") {
@@ -118,28 +128,31 @@ const checkAnswer = (userAnswer) => {
     totalScore++;
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
+      currentQuestionAttempts = 0; // Reset attempts
       showQuestion(currentQuestionIndex);
     } else {
       endQuiz(totalScore);
     }
     alert("Your answer is correct!"); // Display massege
   } else {
-    currentQuestionAttempts++; //Increase the number of attempts for the current question
+    currentQuestionAttempts++;
+    alert("Incorrect answer. Please try again.");
+  } //Increase the number of attempts for the current question
 
-    //Check the maximum number of attempts (3)
-    if (currentQuestionAttempts >= 3) {
-      currentQuestionIndex++; // Go next question
-      if (currentQuestionIndex < questions.length) {
-        showQuestion(currentQuestionIndex);
-      } else {
-        endQuiz(totalScore);
-      }
-      alert("Incorrect! You have exceeded the maximum attempts.");
-    } else {
-      // Message incorrect answer
-      alert("Incorrect answer. Please try again.");
-    }
-  }
+  //   //Check the maximum number of attempts (3)
+  //   if (currentQuestionAttempts >= 3) {
+  //     currentQuestionIndex++; // Go next question
+  //     if (currentQuestionIndex < questions.length) {
+  //       showQuestion(currentQuestionIndex);
+  //     } else {
+  //       endQuiz(totalScore);
+  //     }
+  //     alert("Incorrect! You have exceeded the maximum attempts.");
+  //   } else {
+  //     // Message incorrect answer
+  //     alert("Incorrect answer. Please try again.");
+  //   }
+  // }
 
   //Clearing the input field
   document.getElementById("answer-input").value = "";
