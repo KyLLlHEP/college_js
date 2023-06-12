@@ -102,9 +102,9 @@ const checkAnswer = (userAnswer) => {
     alert("Please enter your answer.");
     return;
   }
-
-  if (currentQuestionAttempts >= 3) {
-    currentQuestionIndex++;
+    if (currentQuestionAttempts >= 3) {
+      currentQuestionAttempts = 0;
+      currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
       showQuestion(currentQuestionIndex);
     } else {
@@ -139,20 +139,7 @@ const checkAnswer = (userAnswer) => {
     alert("Incorrect answer. Please try again.");
   } //Increase the number of attempts for the current question
 
-  //   //Check the maximum number of attempts (3)
-  //   if (currentQuestionAttempts >= 3) {
-  //     currentQuestionIndex++; // Go next question
-  //     if (currentQuestionIndex < questions.length) {
-  //       showQuestion(currentQuestionIndex);
-  //     } else {
-  //       endQuiz(totalScore);
-  //     }
-  //     alert("Incorrect! You have exceeded the maximum attempts.");
-  //   } else {
-  //     // Message incorrect answer
-  //     alert("Incorrect answer. Please try again.");
-  //   }
-  // }
+
 
   //Clearing the input field
   document.getElementById("answer-input").value = "";
@@ -214,3 +201,7 @@ document
       playerListElement.appendChild(playerElement);
     });
   });
+
+
+
+
